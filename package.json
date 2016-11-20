@@ -1,0 +1,17 @@
+{
+  "name": "is-everyone-free",
+  "version": "0.0.0",
+  "dependencies": {
+    "nrtv-library": "*",
+    "web-element": "*",
+    "nrtv-server": "*",
+    "browser-bridge": "*"
+  },
+  "scripts": {
+    "start": "node is-everyone-free.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikpukinskis/is-everyone-free.git"
+  }
+}
