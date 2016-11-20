@@ -21,11 +21,11 @@ library.using(
     function isEveryoneFree(bridge) {
 
       var page = element([
-        element("No.", element.style({"font-size": "50pt"})),
+        element("p", "No.", element.style({"font-size": "50pt"})),
 
-        element("Source: is-everyone-free.com"),
+        element("p", "Source: is-everyone-free.com"),
 
-        element("Text me when everyone is"),
+        element("p", "Text me when everyone is"),
 
         element("input.phone-number", {placeholder: "enter phone number"}),
 
