@@ -1,18 +1,38 @@
 var library = require("nrtv-library")
 
 
+library.define(
+  "tell-browser",
+  function() {
+    function say() {}
+
+    say.defineOn = function(bridge) {
+      throw new Error("impl")
+    }
+
+    return say
+  }
+)
+
 library.using(
-  ["web-element", "browser-bridge", "nrtv-server"],
-  function aVeryDeepDankSpell(element, bridge, webSite) {
+  ["web-element", "browser-bridge", "web-site", "tell-browser", "tell-the-universe"],
+  function aVeryDeepDankSpell(element, bridge, webSite, tellBrowser, tellTheUniverse) {
 
-    function isEveryoneFree() {
-      element("No.", element.style({"font-size": "50pt"}))
-      element("Source: is-everyone-free.com")
-      element("Text me when everyone is")
+    function isEveryoneFree(bridge) {
 
-      element("input.phone-number", {placeholder: "enter phone number"})
+      var page = element([
+        element("No.", element.style({"font-size": "50pt"})),
 
-      element("button", "Let's go", {onclick: signMeUp})
+        element("Source: is-everyone-free.com"),
+
+        element("Text me when everyone is"),
+
+        element("input.phone-number", {placeholder: "enter phone number"}),
+
+        element("button", "Let's go", {onclick: signMeUp})
+      ])
+
+      return bridge.sendPage(page)
     }
 
     ////////////////
@@ -28,7 +48,7 @@ library.using(
 
     //////////
 
-    var getDigits = bridge.defineFunction([say.defineOn(bridge)],
+    var getDigits = bridge.defineFunction([tellBrowser.defineOn(bridge)],
       function getDigits(say) {
       say("like, a phone number has 7 digits or 10 digits with the area code")
     })
@@ -56,7 +76,7 @@ library.using(
     //////////////
 
     var thanks = bridge.defineFunction(
-      [say.defineOn(bridge)],
+      [tellBrowser.defineOn(bridge)],
       function(say) {
         say("OK. It might be a while. We'll text you with updates tho.")
       }
@@ -64,8 +84,6 @@ library.using(
 
     ////////////
 
-    webSite.addRoute("get", function(request, response) {
-      isEveryoneFree
-    })
+    webSite.addRoute("get", isEveryoneFree(bridge))
   }
 )

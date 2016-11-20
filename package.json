@@ -2,10 +2,10 @@
   "name": "is-everyone-free",
   "version": "0.0.0",
   "dependencies": {
-    "nrtv-library": "*",
     "web-element": "*",
-    "nrtv-server": "*",
-    "browser-bridge": "*"
+    "browser-bridge": "*",
+    "web-site": "*",
+    "tell-the-universe": "*"
   },
   "scripts": {
     "start": "node is-everyone-free.js"
